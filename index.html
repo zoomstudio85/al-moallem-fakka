@@ -17,57 +17,62 @@
             --accent-yellow: #eab308;
             --accent-red: #ef4444;
             --gold-gradient: linear-gradient(90deg, #f59e0b, #fbbf24, #d97706);
-            --glass-bg: rgba(15, 23, 42, 0.75);
+            --glass-bg: rgba(15, 23, 42, 0.85);
             --glass-border: rgba(255, 255, 255, 0.18);
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Cairo', sans-serif; }
         body { background-color: var(--bg-color); color: var(--text-main); display: flex; justify-content: center; min-height: 100vh; padding: 8px; }
 
-        .app-container { width: 100%; max-width: 420px; background: #0b0f19; border-radius: 20px; border: 1px solid var(--glass-border); padding-bottom: 90px; position: relative; min-height: 680px; overflow: hidden; }
+        .app-container { width: 100%; max-width: 420px; background: #0b0f19; border-radius: 20px; border: 1px solid var(--glass-border); padding-bottom: 90px; position: relative; min-height: 700px; overflow: hidden; }
 
         /* Loader */
         .loader-overlay { position: absolute; top:0; left:0; width:100%; height:100%; background: var(--bg-color); z-index: 500; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; }
         .spinner { width: 40px; height: 40px; border: 4px solid var(--card-border); border-top: 4px solid var(--accent-yellow); border-radius: 50%; animation: spin 1s linear infinite; }
         @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
 
-        /* Store Header */
+        /* Header Search */
         .store-header { padding: 12px; display: flex; gap: 8px; align-items: center; }
-        .search-input { flex: 1; background: var(--card-bg); border: 1px solid var(--glass-border); color: #fff; padding: 8px 12px; border-radius: 12px; font-size: 0.8rem; }
+        .search-input { width: 100%; background: var(--card-bg); border: 1px solid var(--glass-border); color: #fff; padding: 10px 14px; border-radius: 12px; font-size: 0.85rem; outline: none; }
 
-        /* Section Titles */
-        .section-title { font-size: 0.8rem; font-weight: 800; padding: 6px 12px 4px 12px; display: flex; justify-content: space-between; align-items: center; }
+        /* Titles & Sliders */
+        .section-title { font-size: 0.8rem; font-weight: 800; padding: 8px 12px 4px 12px; display: flex; justify-content: space-between; align-items: center; color: var(--text-muted); }
         .section-title span { color: var(--accent-yellow); }
+
+        .reorder-slider { display: flex; gap: 8px; overflow-x: auto; padding: 4px 12px 10px 12px; scrollbar-width: none; }
+        .reorder-slider::-webkit-scrollbar { display: none; }
+        .reorder-card { background: rgba(30, 41, 59, 0.6); border: 1px solid var(--glass-border); padding: 8px 12px; border-radius: 12px; min-width: 130px; display: flex; align-items: center; gap: 8px; flex-shrink: 0; cursor: pointer; }
 
         /* Categories Bar */
         .category-bar { display: flex; gap: 6px; overflow-x: auto; padding: 4px 12px 8px 12px; scrollbar-width: none; }
         .category-bar::-webkit-scrollbar { display: none; }
-        .cat-chip { background: var(--card-bg); border: 1px solid var(--glass-border); color: var(--text-muted); padding: 6px 12px; border-radius: 16px; font-size: 0.75rem; font-weight: 700; whitespace: nowrap; cursor: pointer; }
+        .cat-chip { background: var(--card-bg); border: 1px solid var(--glass-border); color: var(--text-muted); padding: 6px 14px; border-radius: 16px; font-size: 0.75rem; font-weight: 700; whitespace: nowrap; cursor: pointer; }
         .cat-chip.active { background: var(--accent-blue); color: #fff; border-color: var(--accent-blue); }
 
         /* Products Grid */
-        .product-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; padding: 0 12px; max-height: 440px; overflow-y: auto; }
-        .product-card { background: var(--card-bg); border: 1px solid var(--glass-border); border-radius: 14px; padding: 8px; text-align: center; position: relative; display: flex; flex-direction: column; justify-content: space-between; }
-        .product-img { width: 100%; height: 60px; background: rgba(30, 41, 59, 0.6); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 1.8rem; margin-bottom: 4px; }
+        .product-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; padding: 0 12px 12px 12px; max-height: 420px; overflow-y: auto; }
+        .product-card { background: var(--card-bg); border: 1px solid var(--glass-border); border-radius: 14px; padding: 10px; text-align: center; display: flex; flex-direction: column; justify-content: space-between; position: relative; }
+        .product-card.deal { border-color: var(--accent-yellow); background: rgba(245, 158, 11, 0.08); }
+        .product-img { width: 100%; height: 65px; background: rgba(30, 41, 59, 0.6); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 2rem; margin-bottom: 6px; }
 
-        .qty-controller { display: flex; align-items: center; justify-content: center; gap: 8px; background: rgba(30, 41, 59, 0.8); border: 1px solid var(--glass-border); border-radius: 8px; padding: 3px 6px; margin-top: 6px; }
-        .qty-btn { background: var(--accent-blue); color: #fff; border: none; width: 24px; height: 24px; border-radius: 6px; font-weight: 800; cursor: pointer; }
+        .qty-controller { display: flex; align-items: center; justify-content: space-between; background: rgba(15, 23, 42, 0.9); border: 1px solid var(--glass-border); border-radius: 8px; padding: 4px 8px; margin-top: 8px; }
+        .qty-btn { background: var(--accent-blue); color: #fff; border: none; width: 26px; height: 26px; border-radius: 6px; font-weight: 800; cursor: pointer; font-size: 0.9rem; }
         .qty-btn.minus { background: #334155; }
 
         /* Floating Cart Bar */
-        .floating-cart { position: fixed; bottom: 15px; width: calc(100% - 24px); max-width: 396px; background: var(--accent-green); color: white; padding: 10px 14px; border-radius: 14px; display: flex; justify-content: space-between; align-items: center; font-weight: 800; box-shadow: 0 10px 20px rgba(34, 197, 94, 0.4); z-index: 100; cursor: pointer; }
+        .floating-cart { position: fixed; bottom: 12px; width: calc(100% - 24px); max-width: 396px; background: var(--accent-green); color: white; padding: 12px 16px; border-radius: 14px; display: flex; justify-content: space-between; align-items: center; font-weight: 800; box-shadow: 0 10px 20px rgba(34, 197, 94, 0.35); z-index: 100; cursor: pointer; }
 
         /* Voice Trigger Button */
-        .fakka-chat-trigger { position: fixed; bottom: 75px; left: 15px; background: var(--gold-gradient); color: #000; border: none; padding: 10px 16px; border-radius: 30px; font-weight: 800; font-size: 0.8rem; box-shadow: 0 8px 15px rgba(245, 158, 11, 0.4); cursor: pointer; z-index: 99; display: flex; align-items: center; gap: 6px; }
+        .fakka-chat-trigger { position: fixed; bottom: 75px; left: 16px; background: var(--gold-gradient); color: #000; border: none; padding: 10px 18px; border-radius: 30px; font-weight: 800; font-size: 0.85rem; box-shadow: 0 8px 18px rgba(245, 158, 11, 0.4); cursor: pointer; z-index: 99; display: flex; align-items: center; gap: 6px; }
 
         /* Glass Overlay Chat */
-        .glass-chat-overlay { display: none; position: fixed; bottom: 75px; left: 12px; right: 12px; max-width: 396px; margin: 0 auto; background: var(--glass-bg); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border: 1px solid var(--glass-border); border-radius: 20px; height: 380px; z-index: 200; flex-direction: column; overflow: hidden; box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6); }
-        .glass-header { background: rgba(30, 41, 59, 0.5); padding: 10px 14px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--glass-border); }
-        .chat-body-glass { flex: 1; padding: 12px; overflow-y: auto; display: flex; flex-direction: column; gap: 10px; font-size: 0.75rem; }
-        .msg-fakka { background: rgba(30, 41, 59, 0.7); color: #fff; padding: 8px 12px; border-radius: 12px 12px 0 12px; align-self: flex-start; max-width: 85%; border: 1px solid var(--glass-border); }
-        .msg-user { background: var(--accent-blue); color: #fff; padding: 8px 12px; border-radius: 12px 12px 12px 0; align-self: flex-end; max-width: 85%; }
-        .glass-controls { padding: 8px; background: rgba(30, 41, 59, 0.6); display: flex; gap: 6px; align-items: center; border-top: 1px solid var(--glass-border); }
-        .mic-btn-glass { background: var(--accent-red); color: white; border: none; width: 38px; height: 38px; border-radius: 50%; font-size: 1rem; cursor: pointer; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+        .glass-chat-overlay { display: none; position: fixed; bottom: 75px; left: 12px; right: 12px; max-width: 396px; margin: 0 auto; background: var(--glass-bg); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border: 1px solid var(--glass-border); border-radius: 20px; height: 400px; z-index: 200; flex-direction: column; overflow: hidden; box-shadow: 0 20px 40px rgba(0, 0, 0, 0.7); }
+        .glass-header { background: rgba(30, 41, 59, 0.6); padding: 12px 16px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--glass-border); }
+        .chat-body-glass { flex: 1; padding: 14px; overflow-y: auto; display: flex; flex-direction: column; gap: 10px; font-size: 0.8rem; }
+        .msg-fakka { background: rgba(30, 41, 59, 0.85); color: #fff; padding: 10px 14px; border-radius: 14px 14px 0 14px; align-self: flex-start; max-width: 85%; border: 1px solid var(--glass-border); line-height: 1.4; }
+        .msg-user { background: var(--accent-blue); color: #fff; padding: 10px 14px; border-radius: 14px 14px 14px 0; align-self: flex-end; max-width: 85%; }
+        .glass-controls { padding: 10px; background: rgba(30, 41, 59, 0.7); display: flex; gap: 8px; align-items: center; border-top: 1px solid var(--glass-border); }
+        .mic-btn-glass { background: var(--accent-red); color: white; border: none; width: 40px; height: 40px; border-radius: 50%; font-size: 1.1rem; cursor: pointer; display: flex; align-items: center; justify-content: center; flex-shrink: 0; box-shadow: 0 4px 10px rgba(239, 68, 68, 0.4); }
     </style>
 </head>
 <body>
@@ -76,13 +81,17 @@
     <!-- Loader -->
     <div class="loader-overlay" id="loader">
         <div class="spinner"></div>
-        <div style="font-size:0.85rem; font-weight:700;">جاري تحميل المنتجات لايف من Google Sheets...</div>
+        <div style="font-size:0.85rem; font-weight:700;">جاري تحميل البضاعة مباشرة من Google Sheets...</div>
     </div>
 
     <!-- Header Controls -->
     <div class="store-header">
         <input type="text" id="searchInput" class="search-input" placeholder="🔍 ابحث عن بضاعة أو اطلب بالصوت..." oninput="renderProducts()">
     </div>
+
+    <!-- Quick Re-order Slider -->
+    <div class="section-title">⚡ إعادة الطلب السريع <span>(الأكثر طلباً)</span></div>
+    <div class="reorder-slider" id="reorderSlider"></div>
 
     <!-- Dynamic Category Chips -->
     <div class="section-title">📂 أقسام المتجر الحي</div>
@@ -92,37 +101,37 @@
     <div class="product-grid" id="productContainer"></div>
 
     <!-- Floating Cart Bar -->
-    <div class="floating-cart" onclick="alert('سلة المشتريات مجهزة للطلب!')">
+    <div class="floating-cart" onclick="alert('سلة المشتريات مجهزة للطلب والارسال!')">
         <div><span id="cartCount">0</span> أصناف | <span id="cartTotal">0.00</span> ج.م</div>
-        <span style="font-size:0.8rem;">الدفع والطلب 🚀</span>
+        <span style="font-size:0.85rem;">الدفع والطلب 🚀</span>
     </div>
 
     <!-- Trigger Button -->
     <button class="fakka-chat-trigger" onclick="toggleFakkaGlassChat()">
-        <span>🧔‍♂️</span> المساعد الصوتي الحي
+        <span>🧔‍♂️</span> المعلم فكة بالصوت
     </button>
 
     <!-- Glass Chat Overlay -->
     <div class="glass-chat-overlay" id="fakkaGlassOverlay">
         <div class="glass-header">
-            <div style="font-weight:800; font-size:0.8rem; color:var(--accent-yellow);">المعلم فكة (متصل بالشيت حي)</div>
-            <button onclick="toggleFakkaGlassChat()" style="background:transparent; color:var(--text-muted); border:none; font-size:1rem; cursor:pointer;">✖</button>
+            <div style="font-weight:800; font-size:0.85rem; color:var(--accent-yellow);">🧔‍♂️ المعلم فكة (متصل حياً بالشيت)</div>
+            <button onclick="toggleFakkaGlassChat()" style="background:transparent; color:var(--text-muted); border:none; font-size:1.1rem; cursor:pointer;">✖</button>
         </div>
 
         <div class="chat-body-glass" id="chatBody">
-            <div class="msg-fakka">أهلاً يا غالي! أنا المعلم فكة، قرأت كل البضاعة لايف من الشيت بتاعك! اتكلم بالمايك واطلب أي حاجة وهتتضاف فوراً! 🚀</div>
+            <div class="msg-fakka">يا مرحب بيك في دكانك! أنا المعلم فكة.. قاري كل أسعار وبضاعة الشيت حي. اتكلم بالمايك واطلب أي حاجة وهضيفهالك للسلة فوراً! 🚀</div>
         </div>
 
         <div class="glass-controls">
             <button class="mic-btn-glass" id="micBtn" onclick="toggleSpeechRecognition()">🎙️</button>
-            <input type="text" id="chatTextInput" style="flex:1; background:rgba(11,15,25,0.7); border:1px solid var(--glass-border); color:#fff; padding:6px 10px; border-radius:8px; font-size:0.75rem;" placeholder="اكتب أو اتكلم..." onkeydown="if(event.key==='Enter') sendTextMessage()">
-            <button onclick="sendTextMessage()" style="background:var(--accent-blue); color:#fff; border:none; padding:6px 10px; border-radius:8px; font-size:0.75rem; font-weight:700;">إرسال</button>
+            <input type="text" id="chatTextInput" style="flex:1; background:rgba(11,15,25,0.8); border:1px solid var(--glass-border); color:#fff; padding:8px 12px; border-radius:10px; font-size:0.8rem;" placeholder="اكتب أو اتكلم بالمايك..." onkeydown="if(event.key==='Enter') sendTextMessage()">
+            <button onclick="sendTextMessage()" style="background:var(--accent-blue); color:#fff; border:none; padding:8px 14px; border-radius:10px; font-size:0.8rem; font-weight:700; cursor:pointer;">إرسال</button>
         </div>
     </div>
 </div>
 
 <script>
-    // رابط ملف شيت جوجل الخاص بك (محول لصيغة CSV التلقائية)
+    // رابط ملف شيت جوجل المباشر
     const SHEET_ID = '1RHvBOgFhnGgRm92ZetQhxSSrQSUK4SlKfP9ISslBxjU';
     const CSV_URL = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/export?format=csv`;
 
@@ -137,11 +146,12 @@
             const csvText = await res.text();
             products = parseCSV(csvText);
             document.getElementById('loader').style.display = 'none';
+            renderReorderSlider();
             renderCategories();
             renderProducts();
         } catch (err) {
             console.error('Error loading Sheet:', err);
-            document.getElementById('loader').innerHTML = '<div style="color:var(--accent-red)">خطأ في جلب بيانات الشيت! تأكد من إعدادات المشاركة.</div>';
+            document.getElementById('loader').innerHTML = '<div style="color:var(--accent-red); font-weight:700;">خطأ في جلب بيانات الشيت! تأكد من إعدادات المشاركة.</div>';
         }
     }
 
@@ -154,11 +164,29 @@
             headers.forEach((h, i) => {
                 let val = values[i] || '';
                 if (h === 'price' || h === 'stock' || h === 'id') val = Number(val) || 0;
-                if (h === 'keywords') val = val.split(';');
+                if (h === 'is_deal') val = val.toLowerCase() === 'true';
+                if (h === 'keywords') val = val ? val.split(';') : [];
                 obj[h] = val;
             });
             return obj;
         });
+    }
+
+    function renderReorderSlider() {
+        const topItems = products.slice(0, 5);
+        let html = '';
+        topItems.forEach(p => {
+            html += `
+                <div class="reorder-card" onclick="changeQty(${p.id}, 1)">
+                    <span style="font-size:1.4rem;">${p.image_url || '📦'}</span>
+                    <div>
+                        <div style="font-size:0.75rem; font-weight:700;">${p.name}</div>
+                        <div style="font-size:0.7rem; color:var(--accent-yellow); font-weight:800;">+ إضافة للسلة</div>
+                    </div>
+                </div>
+            `;
+        });
+        document.getElementById('reorderSlider').innerHTML = html;
     }
 
     function renderCategories() {
@@ -176,19 +204,20 @@
     function renderProducts() {
         let filtered = activeCat === 'all' ? products : products.filter(p => p.category === activeCat);
         let q = document.getElementById('searchInput').value.toLowerCase();
-        if(q) filtered = filtered.filter(p => p.name.toLowerCase().includes(q));
+        if(q) filtered = filtered.filter(p => p.name.toLowerCase().includes(q) || (p.keywords && p.keywords.some(k => k.toLowerCase().includes(q))));
 
         let html = '';
         filtered.forEach(p => {
             let qty = cart[p.id] || 0;
+            let dealClass = p.is_deal ? 'deal' : '';
             html += `
-                <div class="product-card">
+                <div class="product-card ${dealClass}">
                     <div class="product-img">${p.image_url || '📦'}</div>
-                    <div style="font-size:0.75rem; font-weight:700;">${p.name}</div>
-                    <div style="font-size:0.8rem; color:var(--accent-green); font-weight:800;">${p.price.toFixed(2)} ج</div>
+                    <div style="font-size:0.8rem; font-weight:700; margin-bottom:2px;">${p.name}</div>
+                    <div style="font-size:0.85rem; color:var(--accent-green); font-weight:800;">${p.price.toFixed(2)} ج</div>
                     <div class="qty-controller">
                         <button class="qty-btn minus" onclick="changeQty(${p.id}, -1)">-</button>
-                        <span style="font-size:0.8rem; font-weight:800;">${qty}</span>
+                        <span style="font-size:0.85rem; font-weight:800;">${qty}</span>
                         <button class="qty-btn" onclick="changeQty(${p.id}, 1)">+</button>
                     </div>
                 </div>
@@ -220,7 +249,7 @@
         win.style.display = win.style.display === 'flex' ? 'none' : 'flex';
     }
 
-    // Voice Recognition Setup
+    // Web Speech API
     if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
         const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
         recognition = new SpeechRecognition();
@@ -233,17 +262,23 @@
     }
 
     function toggleSpeechRecognition() {
-        if(recognition) recognition.start();
-        else alert('التعرف الصوتي يعمل على متصفح Chrome أو عند الرفع على GitHub Pages بـ HTTPS!');
+        if(recognition) {
+            recognition.start();
+            appendMsg('جاري الاستماع إليك الآن... 🎙️', 'msg-fakka');
+        } else {
+            alert('خاصية المايك تحتاج متصفح حديث وبروتوكول HTTPS!');
+        }
     }
 
     function processVoiceNLP(text) {
-        let matched = products.filter(p => p.name.includes(text) || (p.keywords && p.keywords.some(k => text.includes(k))));
+        let lower = text.toLowerCase();
+        let matched = products.filter(p => lower.includes(p.name.toLowerCase()) || (p.keywords && p.keywords.some(k => lower.includes(k.toLowerCase()))));
+        
         if(matched.length > 0) {
             matched.forEach(m => changeQty(m.id, 1));
-            appendMsg(`🎉 تم إضافة ${matched.map(m=>m.name).join(' و ')} للسلة لايف!`, 'msg-fakka');
+            appendMsg(`🎉 عيني يا غالي! ضفتلك ${matched.map(m=>m.name).join(' و ')} للسلة على طول!`, 'msg-fakka');
         } else {
-            appendMsg('سمعتك يا غالي، بس ملقيتش الصنف ده في الشيت الحالي!', 'msg-fakka');
+            appendMsg('سمعتك يا سيدي، بس الصنف ده مش موجود في قائمة الشيت حالياً!', 'msg-fakka');
         }
     }
 
